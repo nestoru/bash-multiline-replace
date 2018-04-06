@@ -1,4 +1,4 @@
-= Usage
+== Usage
 ```
 $ ./multilineReplace.sh 
     Removes a whole block from a regex start to a regex end if it contains an inner regex 
@@ -11,7 +11,7 @@ $ ./multilineReplace.sh
            file:  The file to parse. If no file is provided it will read from stdin
 ```
 
-= Logic
+== Logic
 ```
 $ cat multilineReplace.sh | grep ' # '
   # if line contains the inner string then flag the finding
