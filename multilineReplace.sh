@@ -38,7 +38,7 @@ while IFS= read -r line; do
     foundInner="true"
   fi
 
-  # if line contains start block string then set the array first element 
+  # if line contains the start block string then set the block array first element to be such string
   if [[ $line =~ $start ]]; then
     count=0
     array[$count]="$line"
@@ -47,13 +47,13 @@ while IFS= read -r line; do
   # if the block array is empty then print the line
   if [ ${#array[@]} -eq 0 ]; then
     echo "$line"
-  # otherwise add the line to the array if it is not start or end because those were already managed
+  # otherwise, if it is not start or end (those are not handled here) then add the line to the block array
   elif [[ ! $line =~ $start && ! $line =~ $end ]]; then
     count=$(( $count + 1 ))
     array[$count]="$line"
   fi
 
-  # if line contains end block string then ask if the inner string was found
+  # if line contains the end block string then ask if the inner string was found
   if [[ $line =~ $end ]]; then
     # if the inner string was found then ignore the block and flag no finding
     if [[ "$foundInner" == "true" ]]; then
@@ -69,7 +69,5 @@ while IFS= read -r line; do
     unset array
   fi
  
-
+# accept lines from file or stdin
 done < "${file:-/dev/stdin}"
-
-
